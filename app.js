@@ -8,6 +8,8 @@ const { route } = require('./config/server');
 app.use(express.static(path.join(__dirname, "views")));
 
 routes.rotaHome(app);
-routes.rotaNovaONG(app);
-routes.rotaONGsCadastradas(app);
+routes.rotaInsereONG(app);
+routes.rotaONGSalvar(app);
+routes.rotaONGs
+(app);
 

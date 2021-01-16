@@ -2,11 +2,12 @@
 <html lang="pt-br">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>Cadastro ONG</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	</script>
 
     </head>
     <body> 
@@ -16,38 +17,54 @@
             </div>
         </div>
         <div class="container">
-            <form>
+          <section>
+            <% if(erros){ %>
+            <ul>
+              <% for(let i = 0; i < erros.length; i++){ %>
+              <li>
+                <%= erros[i].msg %>
+              </li>
+              <% } %>
+            </ul>
+            <% } %>
+          </section>
+      </div>
+        <div class="container">
+            <form action="/ONG/salvar" method="post">
               <div class="form-row">
                 <div class="form-group col-md-7">
-                  <label for="nomeONG">Nome</label>
-                  <input type="text" class="form-control" id="nomeONG" >
+                  <label for="nome">Nome</label>
+                  <input type="text" class="form-control" name="nome" value="<%= ong.nome %>">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-5">
-                  <label for="endereço">Endereço</label>
-                  <input type="text" class="form-control" id="endereço" placeholder="Endereço da ONG" >
+                  <label for="endereco">Endereço</label>
+                  <input type="text" class="form-control" name="endereco" placeholder="Endereço da ONG" value="<%= ong.endereco %>">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="telefone">Telefone</label>
-                  <input type="text" class="form-control" id="telefone" placeholder="(99) 99999-9999" >
+                  <input type="text" class="form-control" name="telefone" placeholder="(99) 99999-9999" value="<%= ong.telefone %>">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-2">
                   <label for="estado">Estado</label>
-                  <select id="estado" class="form-control" >
-                    <option selected>Escolher...</option>
-                    <option>...</option>
+                  <select name="estado" id="estado" class="form-control" value="<%= ong.estado %>">
+                    <option selected>...</option>
+                    <option value="SP">SP</option>
+                    <option value="SP">RJ</option>
+                    <option value="SP">ES</option>
+                    <option value="SP">MG</option>
                   </select>
                 </div>
                 <div class="form-group col-md-5">
                   <label for="cidade">Cidade</label>
-                  <input type="text" class="form-control" id="cidade" >
+                  <input type="text" id="cidade" class="form-control" name="cidade" value="<%= ong.cidade %>">
                 </div>
               </div>
-                <button type="submit" class="btn btn-success" href="ONGs-cadastradas">Cadastrar</button>
-              </form>
+                <button type="submit" class="btn btn-success" value="enviar">Cadastrar</button>
+            </form>
         </div>
         
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
